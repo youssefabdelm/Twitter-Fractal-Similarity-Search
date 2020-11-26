@@ -121,7 +121,7 @@ startinguserbioembeddings =  model.encode([startinguserbio])
 
 if degree == 1:
     downloaduserbios(startingusername, startinguserfollowing)
-    users_similarities_bios = getusersbiosandsimilarities(startingusername, startinguserbioembeddings) #Dict: {elonmusk:[similarity, bio]}
+    users_similarities_bios = getusersbiosandsimilarities(startingusername, startinguserbioembeddings) #Dict: {username:[similarity, bio]}
 
     for user, similarityandbio in users_similarities_bios.items():
         similarity = similarityandbio[0]
@@ -132,7 +132,7 @@ if degree == 1:
 
 elif degree == 2:
     downloaduserbios(startingusername, startinguserfollowing)
-    users_similarities_bios = getusersbiosandsimilarities(startingusername, startinguserbioembeddings) #Dict: {elonmusk:[similarity, bio]}
+    users_similarities_bios = getusersbiosandsimilarities(startingusername, startinguserbioembeddings) #Dict: {username:[similarity, bio]}
 
     for userone, similarityandbio in users_similarities_bios.items():
 
