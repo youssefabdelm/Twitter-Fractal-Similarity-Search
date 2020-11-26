@@ -1,6 +1,6 @@
 # Twitter Fractal Similarity Search
 Discover similar users through a fractal search with semantic similarity applied to twitter user bios
-
+![Tree](https://github.com/youssefabdelm/Twitter-Fractal-Similarity-Search/blob/main/tree.png)
 # Usage
 1. `pip install -r requirements.txt`
 2. Enter username
