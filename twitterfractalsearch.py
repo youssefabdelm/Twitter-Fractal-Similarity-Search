@@ -3,16 +3,18 @@ similaritythreshold = float(input('Input similarity threshold: ').strip())
 degree = int(input('Input degree of separation: ').strip())
 downloadmodel = input('In order to make this program work, it needs a RoBERTa language model (around 1.5 GB), are you okay with downloading this model? (y/n): ')
 if downloadmodel.lower().strip() == 'y':
+    from sentence_transformers import SentenceTransformer
     model = SentenceTransformer('roberta-large-nli-stsb-mean-tokens')
 else:
     print('Quiting program...')
     raise ValueError('Quitting program')
+
 import os
 import twint
 import operator
 from twittersixdegrees import makefollowinglistfor, getbio, makedatafolder, appendrowstolist, downloadfollowingsingleuser
 import csv
-from sentence_transformers import SentenceTransformer
+
 
 from numba import jit
 import numpy as np
