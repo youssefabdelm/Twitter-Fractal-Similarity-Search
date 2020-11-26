@@ -1,19 +1,19 @@
 startingusername = input('Input starting username: ').strip()
 similaritythreshold = float(input('Input similarity threshold: ').strip())
 degree = int(input('Input degree of separation: ').strip())
-
+downloadmodel = input('In order to make this program work, it needs a RoBERTa language model (around 1.5 GB), are you okay with downloading this model? (y/n): ')
+if downloadmodel.lower().strip() == 'y':
+    model = SentenceTransformer('roberta-large-nli-stsb-mean-tokens')
+else:
+    print('Quiting program...')
+    raise ValueError('Quitting program')
 import os
 import twint
 import operator
 from twittersixdegrees import makefollowinglistfor, getbio, makedatafolder, appendrowstolist, downloadfollowingsingleuser
 import csv
 from sentence_transformers import SentenceTransformer
-downloadmodel = input('In order to make this program work, it needs a RoBERTa language model (around 1.5 GB), are you okay with downloading this model? (y/n):')
-if downloadmodel.lower().strip() == 'y':
-    model = SentenceTransformer('roberta-large-nli-stsb-mean-tokens')
-else:
-    print('Quiting program...')
-    raise ValueError('Quitting program')
+
 from numba import jit
 import numpy as np
 @jit(nopython=True)
@@ -121,7 +121,7 @@ startinguserbioembeddings =  model.encode([startinguserbio])
 
 if degree == 1:
     downloaduserbios(startingusername, startinguserfollowing)
-    users_similarities_bios = getusersbiosandsimilarities(startingusername, startinguserbioembeddings) #Dict: {username:[similarity, bio]}
+    users_similarities_bios = getusersbiosandsimilarities(startingusername, startinguserbioembeddings)
 
     for user, similarityandbio in users_similarities_bios.items():
         similarity = similarityandbio[0]
@@ -132,7 +132,7 @@ if degree == 1:
 
 elif degree == 2:
     downloaduserbios(startingusername, startinguserfollowing)
-    users_similarities_bios = getusersbiosandsimilarities(startingusername, startinguserbioembeddings) #Dict: {username:[similarity, bio]}
+    users_similarities_bios = getusersbiosandsimilarities(startingusername, startinguserbioembeddings)
 
     for userone, similarityandbio in users_similarities_bios.items():
 
